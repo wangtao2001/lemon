@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\wangtao\\.ohos\\config\\auto_debug_lemon_site.shuangchen.lemon_160086200300216203.cer",
+          "storePassword": "0000001BE6FBD5F8FEF41B6D627439A1695FED8ADD4F11C97703880DDB2B024BDA4B3BC6E2640B8EED3A35",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B63739C1E89CB48FA8CFD45A7113A69014F1E27AB2B58AAC41AD342DB1A0D2CDB314814FCAF66FD",
+          "profile": "C:\\Users\\wangtao\\.ohos\\config\\auto_debug_lemon_site.shuangchen.lemon_160086200300216203.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\wangtao\\.ohos\\config\\auto_debug_lemon_site.shuangchen.lemon_160086200300216203.p12"
+        }
+      }
+    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [
