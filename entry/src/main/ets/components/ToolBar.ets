@@ -10,7 +10,9 @@ export  struct ToolBar {
   items: Array<ToolItem> = [
   { id: '1', img: $r('app.media.ic_public_arrow_left') },
   { id: '2', img: $r('app.media.ic_public_arrow_right') },
-  { id: '3', img: $r('app.media.ic_public_home') },
+  { id: '3', img: $r('app.media.ic_public_home'), callback: () => AlertDialog.show({
+    message: '返回主页'
+  })},
   { id: '4', img: $r('app.media.ic_public_view_list') },
   { id: '5', img: $r('app.media.ic_public_settings') }
 ]
@@ -22,10 +24,13 @@ export  struct ToolBar {
       alignItems: ItemAlign.Center
     }) {
       ForEach(this.items, (item: ToolItem) => {
-        ItemButton({img: item.img})
+        ItemButton({img: item.img}).onClick(event => {
+          if (item.callback) { // 判断回调函数是否存在
+            item.callback()
+          }
+        })
       }, (item: ToolItem) => item.id)
     }
-      .height(52)
   }
 }
 
@@ -37,12 +42,12 @@ struct ItemButton {
       Column(){
         Image(this.img)
           .objectFit(ImageFit.Contain)
-          .width(28) // height 28
+          .width(28).height(28)
       }
         .alignItems(HorizontalAlign.Center)
         .padding({
           top: 12, bottom: 12, left: 15, right: 15
-        })
+        }) // 按压后的反馈区域
         .borderRadius(10)
         .stateStyles({
           pressed: {

@@ -8,26 +8,46 @@ export struct TitleBar {
       alignItems: ItemAlign.Center,
       justifyContent: FlexAlign.SpaceBetween
     }) {
-      Column() {
+      Flex({
+        justifyContent: FlexAlign.Center,
+        alignItems: ItemAlign.Center
+      }) {
         Image($r('app.media.ic_public_search_filled')).objectFit(ImageFit.Contain)
+          .height(24).width(24)
       }
-        .padding(10)
-        .width(44)
         .height('100%')
-        .backgroundColor(Color.Red)
-        .alignItems(HorizontalAlign.Center)
+        .width(40)
       TextInput({
           text: this.url
       })
-        .borderRadius(0)
-        .height('100%')
-        .flexBasis('auto')
-      Text('搜索')
-        .padding(10)
-        .backgroundColor('#F1F3F5')
-        .fontColor('#64BB5C')
-        .height('100%')
+        .borderRadius(40)
+        .width(0)
+        .border({
+          width: 1
+        })
+        .flexGrow(1)
+      Flex({
+        justifyContent: FlexAlign.Center,
+        alignItems: ItemAlign.Center
+      }) {
+        Text('搜索')
+          .fontSize(15)
+          .fontColor('#64BB5C')
+      }
+        .width(52)
+        .height('60%')
+        .borderRadius(40)
+        .stateStyles({
+          pressed: {
+            .backgroundColor('#e5e5e5')
+          },
+          normal: {
+            .backgroundColor('#F1F3F5')
+          }
+        })
+
     }
-    .height(52)
+    .height(60)
+    .backgroundColor('#F1F3F5')
   }
 }

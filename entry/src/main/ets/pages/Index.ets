@@ -1,15 +1,11 @@
 import { TitleBar } from '../components/TitleBar'
 import { ToolBar } from '../components/ToolBar'
-
-import web_webview from '@ohos.web.webview'
+import { Browser } from '../components/Browser'
 
 @Entry
 @Component
 struct Index {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController()
-  @State url: string = 'https://www.baidu.com/'
-  @State progressValue: number = 0
-
+  @State url: string = 'https://bing.com'
 
   build() {
     Flex({
@@ -19,21 +15,9 @@ struct Index {
       TitleBar({
         url: this.url
       })
-        Stack({
-          alignContent: Alignment.TopStart
-        }) {
-          Web({
-            src: this.url, controller: this.webviewController
-          })
-            .onPageBegin( event => this.url = event.url)
-            .onProgressChange(event => this.progressValue = event.newProgress)
-          if (this.progressValue > 0 && this.progressValue < 100 ) {
-            Progress({
-              value: this.progressValue, total: 100, type: ProgressType.Linear
-            })
-              .width('100%')
-        }
-      }
+      Browser({
+        url: this.url
+      })
       ToolBar()
     }
   }
