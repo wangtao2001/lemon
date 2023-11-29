@@ -1,3 +1,5 @@
+import web_webview from '@ohos.web.webview'
+
 interface ToolItem {
   id: string,
   img: Resource,
@@ -7,12 +9,12 @@ interface ToolItem {
 @Component
 export  struct ToolBar {
 
+  webviewController: web_webview.WebviewController
+
   items: Array<ToolItem> = [
-  { id: '1', img: $r('app.media.ic_public_arrow_left') },
-  { id: '2', img: $r('app.media.ic_public_arrow_right') },
-  { id: '3', img: $r('app.media.ic_public_home'), callback: () => AlertDialog.show({
-    message: '返回主页'
-  })},
+  { id: '1', img: $r('app.media.ic_public_arrow_left'), callback: () => this.webviewController.backward() },
+  { id: '2', img: $r('app.media.ic_public_arrow_right'), callback: () => this.webviewController.forward() },
+  { id: '3', img: $r('app.media.ic_public_home'), callback: () => this.webviewController.loadUrl('https://www.baidu.com')},
   { id: '4', img: $r('app.media.ic_public_view_list') },
   { id: '5', img: $r('app.media.ic_public_settings') }
 ]

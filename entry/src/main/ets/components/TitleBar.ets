@@ -1,6 +1,10 @@
+import web_webview from '@ohos.web.webview'
+
 @Component
 export struct TitleBar {
   @Prop url: string
+
+  webviewController: web_webview.WebviewController
 
   build() {
     Flex({
@@ -26,6 +30,8 @@ export struct TitleBar {
           width: 1
         })
         .flexGrow(1)
+        .onChange( value => this.url = value)
+        .onSubmit( event => this.webviewController.loadUrl(this.url))
       Flex({
         justifyContent: FlexAlign.Center,
         alignItems: ItemAlign.Center

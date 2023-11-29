@@ -3,7 +3,7 @@ import web_webview from '@ohos.web.webview'
 @Component
 export struct Browser {
 
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController()
+  webviewController: web_webview.WebviewController
   @Link url: string
   @State progressValue: number = 0
 
