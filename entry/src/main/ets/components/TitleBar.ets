@@ -5,6 +5,7 @@ export struct TitleBar {
   @Prop url: string
 
   webviewController: web_webview.WebviewController
+  @State input: boolean = false
 
   build() {
     Flex({
@@ -16,11 +17,34 @@ export struct TitleBar {
         justifyContent: FlexAlign.Center,
         alignItems: ItemAlign.Center
       }) {
-        Image($r('app.media.ic_public_search_filled')).objectFit(ImageFit.Contain)
-          .height(24).width(24)
+        if (this.input) {
+          Image($r('app.media.ic_public_cancel'))
+            .objectFit(ImageFit.Contain)
+            .height(24).width(24)
+        } else {
+          Image($r('app.media.ic_public_search_filled'))
+            .objectFit(ImageFit.Contain)
+            .height(24).width(24)
+        }
       }
         .height('100%')
         .width(40)
+        .height('60%')
+        .borderRadius(100)
+        .stateStyles({
+          pressed: {
+            .backgroundColor('#e5e5e5')
+          },
+          normal: {
+            .backgroundColor(Color.White)
+          }
+      })
+        .onClick( () => {
+          if (this.input) this.url = ''
+          else AlertDialog.show({
+             message: this.webviewController.getTitle() + '\n' + this.webviewController.getUrl()
+          })
+        })
       TextInput({
           text: this.url
       })
@@ -35,6 +59,7 @@ export struct TitleBar {
           if (isUrlString(this.url)) this.webviewController.loadUrl(this.url)
           else this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)
         })
+        .onEditChange( value => this.input = value)
       Flex({
         justifyContent: FlexAlign.Center,
         alignItems: ItemAlign.Center
@@ -51,17 +76,15 @@ export struct TitleBar {
             .backgroundColor('#e5e5e5')
           },
           normal: {
-            .backgroundColor('#F1F3F5')
+            .backgroundColor(Color.White)
           }
         })
         .onClick( event => {
           if (isUrlString(this.url)) this.webviewController.loadUrl(this.url)
           else this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)
         })
-
     }
     .height(60)
-    .backgroundColor('#F1F3F5')
   }
 }
 

@@ -1,4 +1,5 @@
 import web_webview from '@ohos.web.webview'
+import router from '@ohos.router'
 
 interface ToolItem {
   id: string,
@@ -16,7 +17,7 @@ export  struct ToolBar {
   { id: '2', img: $r('app.media.ic_public_arrow_right'), callback: () => this.webviewController.forward() },
   { id: '3', img: $r('app.media.ic_public_home'), callback: () => this.webviewController.loadUrl('https://www.baidu.com')},
   { id: '4', img: $r('app.media.ic_public_view_list') },
-  { id: '5', img: $r('app.media.ic_public_settings') }
+  { id: '5', img: $r('app.media.ic_public_settings'), callback: () => router.pushUrl({url: 'pages/Settings'}) }
 ]
 
   build() {
