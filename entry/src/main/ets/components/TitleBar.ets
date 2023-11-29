@@ -31,7 +31,10 @@ export struct TitleBar {
         })
         .flexGrow(1)
         .onChange( value => this.url = value)
-        .onSubmit( event => this.webviewController.loadUrl(this.url))
+        .onSubmit( event => {
+          if (isUrlString(this.url)) this.webviewController.loadUrl(this.url)
+          else this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)
+        })
       Flex({
         justifyContent: FlexAlign.Center,
         alignItems: ItemAlign.Center
@@ -51,9 +54,18 @@ export struct TitleBar {
             .backgroundColor('#F1F3F5')
           }
         })
+        .onClick( event => {
+          if (isUrlString(this.url)) this.webviewController.loadUrl(this.url)
+          else this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)
+        })
 
     }
     .height(60)
     .backgroundColor('#F1F3F5')
   }
+}
+
+const isUrlString = str => {
+  var pattern = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\{0}'\*\+,;=.]+$/
+  return pattern.test(str)
 }
