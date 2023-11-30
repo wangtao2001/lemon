@@ -4,25 +4,25 @@ export  struct SelectDialog {
   @Link selectValue: string
 
   radios = [
-    {title: '百度', value: 'baidu', id: '0', checked: false},
-    {title: 'BING', value: 'bing', id: '1', checked: true},
-    {title: 'GOOGLE', value: 'google', id: '2', checked: false}
+    {title: '百度', value: 'baidu', id: '0'},
+    {title: 'BING', value: 'bing', id: '1'},
+    {title: 'GOOGLE', value: 'google', id: '2'}
   ]
 
   build() {
     Column() {
       ForEach(this.radios, r => {
         Row() {
-          Text(r.title)
-          Radio({value: r.value, group: '0'}).checked(r.checked).onChange( isChecked => {
+          Radio({value: r.value, group: '0'}).checked(r.value == this.selectValue).onChange( isChecked => {
             if (isChecked) {
               this.selectValue = r.value
             }
             this.controller.close()
           })
+          Text(r.title)
         }
         .width('50%')
-        .justifyContent(FlexAlign.SpaceBetween)
+        .justifyContent(FlexAlign.Start)
       })
     }.padding({ bottom: 10, top: 20 })
   }

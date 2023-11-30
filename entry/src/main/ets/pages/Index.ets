@@ -32,10 +32,10 @@ struct Index {
   }
 
   pageTransition() {
-    PageTransitionEnter({ type: RouteType.None, duration: 0 })
+    PageTransitionEnter({ type: RouteType.Pop, duration: 0 })
       .slide(SlideEffect.Left)
 
-    PageTransitionExit({ type: RouteType.None, duration: 1000000, curve: Curve.Ease  })
+    PageTransitionExit({ type: RouteType.Push, duration: 1000000, curve: Curve.Ease  })
       .slide(SlideEffect.Left)
   }
 }

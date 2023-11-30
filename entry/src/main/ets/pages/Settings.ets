@@ -2,6 +2,7 @@ import { SettingHead } from '../components/setting/SettingHead'
 import { SettingItem } from '../components/setting/SettingItem'
 import { InputDialog } from '../components/dialog/InputDialog'
 import { SelectDialog } from '../components/dialog/SelectDialog'
+import router from '@ohos.router'
 
 interface Setting {
   id: string
@@ -51,7 +52,7 @@ struct Settings {
       title: '更多',
       items: [
         {id: '0201',content: '检查更新'},
-        {id: '0202',content: '关于'}
+        {id: '0202',content: '关于', callback: () => router.pushUrl({url: 'pages/About'})}
       ]
     }
   ]
@@ -85,10 +86,16 @@ struct Settings {
   }
 
   pageTransition() {
-    PageTransitionEnter({ type: RouteType.None, duration: 300, curve: Curve.Ease })
+    PageTransitionEnter({ type: RouteType.Push, duration: 300, curve: Curve.Ease })
       .slide(SlideEffect.Right)
 
-    PageTransitionExit({ type: RouteType.None, duration: 300, curve: Curve.Ease })
+    PageTransitionExit({ type: RouteType.Pop, duration: 300, curve: Curve.Ease })
       .slide(SlideEffect.Right)
+
+    PageTransitionEnter({ type: RouteType.Pop, duration: 0, curve: Curve.Ease })
+      .slide(SlideEffect.Right)
+
+    PageTransitionExit({ type: RouteType.Push, duration: 1000000, curve: Curve.Ease })
+      .slide(SlideEffect.Left)
   }
 }
