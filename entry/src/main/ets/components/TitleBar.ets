@@ -1,5 +1,7 @@
 import web_webview from '@ohos.web.webview'
 
+import { isUrlString } from '../utils/urlUtil'
+
 @Component
 export struct TitleBar {
   @Prop url: string
@@ -56,7 +58,20 @@ export struct TitleBar {
         .onChange( value => this.url = value)
         .onSubmit( event => {
           if (isUrlString(this.url)) this.webviewController.loadUrl(this.url)
-          else this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)
+          else {
+            const engine = AppStorage.Get('defaultEngine')
+            switch (engine) {
+              case 'bing':
+                this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)
+                break
+              case 'baidu':
+                this.webviewController.loadUrl(`https://www.baidu.com/s?wd=${this.url}`)
+                break
+              case  'google':
+                this.webviewController.loadUrl(`https://www.google.com/search?q=${this.url}`)
+                break
+            }
+          }
         })
         .onEditChange( value => this.input = value)
       Flex({
@@ -85,9 +100,4 @@ export struct TitleBar {
     }
     .height(60)
   }
-}
-
-const isUrlString = str => {
-  var pattern = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\{0}'\*\+,;=.]+$/
-  return pattern.test(str)
 }

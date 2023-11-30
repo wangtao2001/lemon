@@ -4,10 +4,13 @@ import { Browser } from '../components/Browser'
 
 import web_webview from '@ohos.web.webview'
 
+PersistentStorage.PersistProp('defaultEngine', 'bing');
+PersistentStorage.PersistProp('defaultHomePage', 'https://bing.com');
+
 @Entry
 @Component
 struct Index {
-  @State url: string = 'https://bing.com'
+  @State url: string = AppStorage.Get('defaultHomePage') // 这里是页面打开的时候读取的默认值
   webviewController: web_webview.WebviewController = new web_webview.WebviewController()
 
   build() {
@@ -28,10 +31,10 @@ struct Index {
   }
 
   pageTransition() {
-    PageTransitionEnter({ type: RouteType.None, duration: 80 })
+    PageTransitionEnter({ type: RouteType.None, duration: 200 })
       .slide(SlideEffect.Left)
 
-    PageTransitionExit({ type: RouteType.None, duration: 80 })
+    PageTransitionExit({ type: RouteType.None, duration: 200 })
       .slide(SlideEffect.Left)
   }
 }

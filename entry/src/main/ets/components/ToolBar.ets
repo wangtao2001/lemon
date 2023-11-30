@@ -15,7 +15,7 @@ export  struct ToolBar {
   items: Array<ToolItem> = [
   { id: '1', img: $r('app.media.ic_public_arrow_left'), callback: () => this.webviewController.backward() },
   { id: '2', img: $r('app.media.ic_public_arrow_right'), callback: () => this.webviewController.forward() },
-  { id: '3', img: $r('app.media.ic_public_home'), callback: () => this.webviewController.loadUrl('https://www.baidu.com')},
+  { id: '3', img: $r('app.media.ic_public_home'), callback: () => this.webviewController.loadUrl(AppStorage.Get('defaultHomePage'))},
   { id: '4', img: $r('app.media.ic_public_view_list') },
   { id: '5', img: $r('app.media.ic_public_settings'), callback: () => router.pushUrl({url: 'pages/Settings'}) }
 ]
@@ -51,7 +51,7 @@ struct ItemButton {
         .padding({
           top: 12, bottom: 12, left: 15, right: 15
         }) // 按压后的反馈区域
-        .borderRadius(10)
+        .borderRadius(40)
         .stateStyles({
           pressed: {
             .backgroundColor('#e5e5e5')
