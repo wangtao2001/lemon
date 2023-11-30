@@ -21,8 +21,11 @@ export struct Browser {
       if (this.progressValue > 0 && this.progressValue < 100 ) {
         Progress({
           value: this.progressValue, total: 100, type: ProgressType.Linear
-        })
-          .width('100%')
+        }).width('100%').color('#64BB5C')
+      } else {
+        Progress({
+          value: 100, total: 100, type: ProgressType.Linear
+        }).width('100%').opacity(0).color('#64BB5C')
       }
     }
   }

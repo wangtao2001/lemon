@@ -93,6 +93,7 @@ export struct TitleBar {
             .backgroundColor(Color.White)
           }
         })
+        .animation({duration: 220})
         .onClick( event => {
           if (isUrlString(this.url)) this.webviewController.loadUrl(this.url)
           else this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)

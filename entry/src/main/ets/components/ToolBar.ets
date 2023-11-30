@@ -60,5 +60,6 @@ struct ItemButton {
             .backgroundColor(Color.White)
           }
         })
+      .animation({duration: 220})
   }
 }

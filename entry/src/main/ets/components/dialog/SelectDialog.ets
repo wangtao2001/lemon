@@ -1,4 +1,3 @@
-@Preview
 @CustomDialog
 export  struct SelectDialog {
   controller: CustomDialogController
@@ -19,6 +18,7 @@ export  struct SelectDialog {
             if (isChecked) {
               this.selectValue = r.value
             }
+            this.controller.close()
           })
         }
         .width('50%')

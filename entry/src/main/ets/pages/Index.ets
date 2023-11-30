@@ -28,13 +28,14 @@ struct Index {
         webviewController: this.webviewController
       })
     }
+    .backgroundColor(Color.White)
   }
 
   pageTransition() {
-    PageTransitionEnter({ type: RouteType.None, duration: 200 })
+    PageTransitionEnter({ type: RouteType.None, duration: 0 })
       .slide(SlideEffect.Left)
 
-    PageTransitionExit({ type: RouteType.None, duration: 200 })
+    PageTransitionExit({ type: RouteType.None, duration: 1000000, curve: Curve.Ease  })
       .slide(SlideEffect.Left)
   }
 }

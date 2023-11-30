@@ -1,9 +1,9 @@
 {
   "app": {
     "bundleName": "site.shuangchen.lemon",
-    "vendor": "example",
+    "vendor": "Developed based on native components, lightweight browser.",
     "versionCode": 1000000,
-    "versionName": "1.0.0",
+    "versionName": "0.0.1",
     "icon": "$media:app_icon",
     "label": "$string:app_name"
   }

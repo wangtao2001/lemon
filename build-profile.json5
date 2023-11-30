@@ -6,9 +6,9 @@
         "type": "HarmonyOS",
         "material": {
           "certpath": "C:\\Users\\wangtao\\.ohos\\config\\auto_debug_lemon_site.shuangchen.lemon_160086200300216203.cer",
-          "storePassword": "0000001A1B64CD180EEF8C28221B2A9FB32A892DE5842134FFB668AE3EC0F1416F2AD10902F2D55209E6",
+          "storePassword": "0000001AB7EB23CC044984A81274FAA91852B0137F6CCDA12724ED8264F8F29E979706045CE9EA2D79EF",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001AC2A30AB6D0CB30C6EE088F173FCCA4BBA0C9A2E222B3F95C362222F39F9FD27D143DD190661E",
+          "keyPassword": "0000001A9C032A6CEED5B663CEDCDAF3860EC8D310CB4A5ACD0CED175CF47C21C8EC0F90582AF6EE4941",
           "profile": "C:\\Users\\wangtao\\.ohos\\config\\auto_debug_lemon_site.shuangchen.lemon_160086200300216203.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "C:\\Users\\wangtao\\.ohos\\config\\auto_debug_lemon_site.shuangchen.lemon_160086200300216203.p12"

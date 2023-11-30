@@ -24,6 +24,7 @@ export struct SettingItem {
         .backgroundColor(Color.White)
       }
     })
+    .animation({duration: 220})
     .onClick( () => this.callback())
   }
 }

@@ -73,6 +73,8 @@ struct Settings {
       }
       .padding(10)
     }
+    .backgroundColor(Color.White)
+    .height('100%')
   }
 
   @Builder
@@ -83,10 +85,10 @@ struct Settings {
   }
 
   pageTransition() {
-    PageTransitionEnter({ type: RouteType.None, duration: 200 })
+    PageTransitionEnter({ type: RouteType.None, duration: 300, curve: Curve.Ease })
       .slide(SlideEffect.Right)
 
-    PageTransitionExit({ type: RouteType.None, duration: 200 })
+    PageTransitionExit({ type: RouteType.None, duration: 300, curve: Curve.Ease })
       .slide(SlideEffect.Right)
   }
 }
