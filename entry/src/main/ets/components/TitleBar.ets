@@ -1,10 +1,16 @@
 import web_webview from '@ohos.web.webview'
+import promptAction from '@ohos.promptAction'
 
-import { isUrlString } from '../utils/urlUtil'
+import { isUrlString, searchAPI } from '../utils/urlUtil'
 
 @Component
 export struct TitleBar {
-  @Prop url: string
+  @Prop @Watch('urlChange') url: string
+  @State inputValue: string = this.url // url初始化
+
+  urlChange() {
+    this.inputValue = this.url // url外部改变
+  }
 
   webviewController: web_webview.WebviewController
   @State input: boolean = false
@@ -41,13 +47,13 @@ export struct TitleBar {
           }
       })
         .onClick( () => {
-          if (this.input) this.url = ''
+          if (this.input) this.inputValue = ''
           else AlertDialog.show({
              message: this.webviewController.getTitle() + '\n' + this.webviewController.getUrl()
           })
         })
       TextInput({
-          text: this.url
+          text: this.inputValue
       })
         .borderRadius(40)
         .width(0)
@@ -55,30 +61,23 @@ export struct TitleBar {
           width: 1
         })
         .flexGrow(1)
-        .onChange( value => this.url = value)
+        .onChange( value => this.inputValue = value)
         .onSubmit( event => {
-          if (isUrlString(this.url)) this.webviewController.loadUrl(this.url)
+          if (isUrlString(this.inputValue)) this.webviewController.loadUrl(this.inputValue)
           else {
-            const engine = AppStorage.Get('defaultEngine')
-            switch (engine) {
-              case 'bing':
-                this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)
-                break
-              case 'baidu':
-                this.webviewController.loadUrl(`https://www.baidu.com/s?wd=${this.url}`)
-                break
-              case  'google':
-                this.webviewController.loadUrl(`https://www.google.com/search?q=${this.url}`)
-                break
-            }
+            const engine: string = AppStorage.Get('defaultEngine')
+            this.webviewController.loadUrl(searchAPI(engine, this.inputValue))
           }
         })
-        .onEditChange( value => this.input = value)
+        .onEditChange( bool => {
+          this.input = bool
+          if (!bool) this.inputValue = this.url // 失去输入状态再次初始化
+        })
       Flex({
         justifyContent: FlexAlign.Center,
         alignItems: ItemAlign.Center
       }) {
-        Text('搜索')
+        Text(this.input ? '搜索': '刷新')
           .fontSize(15)
           .fontColor('#64BB5C')
       }
@@ -95,8 +94,15 @@ export struct TitleBar {
         })
         .animation({duration: 220})
         .onClick( event => {
-          if (isUrlString(this.url)) this.webviewController.loadUrl(this.url)
-          else this.webviewController.loadUrl(`https://bing.com/search?q=${this.url}`)
+          if (this.input) {
+            if (isUrlString(this.inputValue)) this.webviewController.loadUrl(this.inputValue)
+            else {
+            const engine: string = AppStorage.Get('defaultEngine')
+            this.webviewController.loadUrl(searchAPI(engine, this.inputValue))
+          }
+          } else {
+            this.webviewController.refresh()
+          }
         })
     }
     .height(60)

@@ -11,7 +11,7 @@ struct About {
           SettingHead({title: '关于'})
           Column() {
             Image($r('app.media.icon')).height(80).width(80).borderRadius(50)
-            Text('lemon 浏览器').margin({top: 20, bottom: 5}).fontWeight(700).fontSize(18)
+            Text('lemon 浏览器').margin({top: 20, bottom: 5}).fontWeight(700).fontSize(22)
             Text('0.0.1').fontSize(14).fontColor('#66000000')
           }
           .width('100%')

@@ -2,7 +2,9 @@ import { SettingHead } from '../components/setting/SettingHead'
 import { SettingItem } from '../components/setting/SettingItem'
 import { InputDialog } from '../components/dialog/InputDialog'
 import { SelectDialog } from '../components/dialog/SelectDialog'
+
 import router from '@ohos.router'
+import promptAction from '@ohos.promptAction'
 
 interface Setting {
   id: string
@@ -51,7 +53,7 @@ struct Settings {
       id: '02',
       title: '更多',
       items: [
-        {id: '0201',content: '检查更新'},
+        {id: '0201',content: '检查更新', callback: () => promptAction.showToast({message:'当前已是最新版本'})},
         {id: '0202',content: '关于', callback: () => router.pushUrl({url: 'pages/About'})}
       ]
     }
