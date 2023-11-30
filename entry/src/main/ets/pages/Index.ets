@@ -26,4 +26,12 @@ struct Index {
       })
     }
   }
+
+  pageTransition() {
+    PageTransitionEnter({ type: RouteType.None, duration: 80 })
+      .slide(SlideEffect.Left)
+
+    PageTransitionExit({ type: RouteType.None, duration: 80 })
+      .slide(SlideEffect.Left)
+  }
 }

@@ -27,7 +27,6 @@ export struct TitleBar {
             .height(24).width(24)
         }
       }
-        .height('100%')
         .width(40)
         .height('60%')
         .borderRadius(100)
