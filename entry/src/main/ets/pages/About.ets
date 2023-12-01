@@ -35,10 +35,10 @@ struct About {
   }
 
   pageTransition() {
-    PageTransitionEnter({ type: RouteType.Push, duration: 300, curve: Curve.Ease })
+    PageTransitionEnter({ type: RouteType.Push, duration: 250, curve: Curve.Ease })
       .slide(SlideEffect.Right)
 
-    PageTransitionExit({ type: RouteType.Pop, duration: 300, curve: Curve.Ease })
+    PageTransitionExit({ type: RouteType.Pop, duration: 250, curve: Curve.Ease })
       .slide(SlideEffect.Right)
   }
 }

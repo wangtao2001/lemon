@@ -104,7 +104,6 @@ export struct TitleBar {
             this.webviewController.refresh()
           }
         })
-    }
-    .height(60)
+    }.height(60)
   }
 }

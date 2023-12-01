@@ -11,29 +11,30 @@ interface ToolItem {
 export  struct ToolBar {
 
   webviewController: web_webview.WebviewController
+  @Link tabPanel: boolean
 
   items: Array<ToolItem> = [
   { id: '1', img: $r('app.media.ic_public_arrow_left'), callback: () => this.webviewController.backward() },
   { id: '2', img: $r('app.media.ic_public_arrow_right'), callback: () => this.webviewController.forward() },
   { id: '3', img: $r('app.media.ic_public_home'), callback: () => this.webviewController.loadUrl(AppStorage.Get('defaultHomePage'))},
-  { id: '4', img: $r('app.media.ic_public_view_list') },
+  { id: '4', img: $r('app.media.ic_public_view_list'), callback: () => this.tabPanel = ! this.tabPanel },
   { id: '5', img: $r('app.media.ic_public_settings'), callback: () => router.pushUrl({url: 'pages/Settings'}) }
 ]
 
   build() {
-    Flex({
-      direction: FlexDirection.Row,
-      justifyContent: FlexAlign.SpaceAround,
-      alignItems: ItemAlign.Center
-    }) {
-      ForEach(this.items, (item: ToolItem) => {
-        ItemButton({img: item.img}).onClick(event => {
-          if (item.callback) { // 判断回调函数是否存在
-            item.callback()
-          }
-        })
-      }, (item: ToolItem) => item.id)
-    }
+      Flex({
+        direction: FlexDirection.Row,
+        justifyContent: FlexAlign.SpaceAround,
+        alignItems: ItemAlign.Center
+      }) {
+        ForEach(this.items, (item: ToolItem) => {
+          ItemButton({img: item.img}).onClick(event => {
+            if (item.callback) { // 判断回调函数是否存在
+              item.callback()
+            }
+          })
+        }, (item: ToolItem) => item.id)
+      }
   }
 }
 
@@ -49,7 +50,7 @@ struct ItemButton {
       }
         .alignItems(HorizontalAlign.Center)
         .padding({
-          top: 12, bottom: 12, left: 15, right: 15
+          top: 16, bottom: 16, left: 20, right: 20
         }) // 按压后的反馈区域
         .borderRadius(40)
         .stateStyles({
