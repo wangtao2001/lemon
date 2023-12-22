@@ -1,6 +1,7 @@
 @CustomDialog
 export  struct InputDialog {
   controller: CustomDialogController
+  title: string = ''
   textValue: string = '' // 临时保存
   @Link inputValue: string
   cancel: () => void = () => {}
@@ -8,6 +9,7 @@ export  struct InputDialog {
 
   build() {
     Column() {
+      Text(this.title).margin({bottom: 10})
       TextInput({ placeholder: '', text: this.inputValue }).width('90%')
         .onChange((value: string) => {
           this.textValue = value

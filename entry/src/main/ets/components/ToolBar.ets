@@ -10,13 +10,16 @@ interface ToolItem {
 @Component
 export  struct ToolBar {
 
-  webviewController: web_webview.WebviewController
+  @Link webviewController: web_webview.WebviewController
   @Link tabPanel: boolean
 
   items: Array<ToolItem> = [
   { id: '1', img: $r('app.media.ic_public_arrow_left'), callback: () => this.webviewController.backward() },
   { id: '2', img: $r('app.media.ic_public_arrow_right'), callback: () => this.webviewController.forward() },
-  { id: '3', img: $r('app.media.ic_public_home'), callback: () => this.webviewController.loadUrl(AppStorage.Get('defaultHomePage'))},
+  { id: '3', img: $r('app.media.ic_public_home'), callback: () => {
+    this.webviewController.stop()
+    this.webviewController.loadUrl(AppStorage.Get('defaultHomePage'))
+  }},
   { id: '4', img: $r('app.media.ic_public_view_list'), callback: () => this.tabPanel = ! this.tabPanel },
   { id: '5', img: $r('app.media.ic_public_settings'), callback: () => router.pushUrl({url: 'pages/Settings'}) }
 ]

@@ -12,7 +12,7 @@ export struct TitleBar {
     this.inputValue = this.url // url外部改变
   }
 
-  webviewController: web_webview.WebviewController
+  @Link webviewController: web_webview.WebviewController
   @State input: boolean = false
 
   build() {
@@ -66,6 +66,7 @@ export struct TitleBar {
           if (isUrlString(this.inputValue)) this.webviewController.loadUrl(this.inputValue)
           else {
             const engine: string = AppStorage.Get('defaultEngine')
+            this.webviewController.stop()
             this.webviewController.loadUrl(searchAPI(engine, this.inputValue))
           }
         })
@@ -98,6 +99,7 @@ export struct TitleBar {
             if (isUrlString(this.inputValue)) this.webviewController.loadUrl(this.inputValue)
             else {
             const engine: string = AppStorage.Get('defaultEngine')
+              this.webviewController.stop()
             this.webviewController.loadUrl(searchAPI(engine, this.inputValue))
           }
           } else {

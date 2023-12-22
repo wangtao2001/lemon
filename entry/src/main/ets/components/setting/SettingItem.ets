@@ -3,10 +3,15 @@ export struct SettingItem {
 
   content: string = ''
   callback: ()=>void = () => {}
+  main: boolean = false
 
   build() {
     Row() {
-      Text(this.content)
+      if (this.main) {
+        Text(this.content).fontColor('#64BB5C')
+      } else {
+        Text(this.content)
+      }
       Image($r('app.media.ic_public_arrow_right'))
         .width('18').height('18')
     }

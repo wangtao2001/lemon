@@ -15,8 +15,14 @@ export struct Browser {
       Web({
         src: this.url, controller: this.webviewController
       })
-        .onPageBegin( event => this.url = event.url)
-        .onProgressChange(event => this.progressValue = event.newProgress)
+        .onPageBegin( event => {
+          console.log('AAAA', '页面开始')
+          this.url = event.url
+        })
+        .onProgressChange(event => {
+          console.log('AAAA', '进度条变化')
+          this.progressValue = event.newProgress
+        })
         .userAgent(this.userAgent)
       if (this.progressValue > 0 && this.progressValue < 100 ) {
         Progress({
@@ -25,7 +31,7 @@ export struct Browser {
       } else {
         Progress({
           value: 100, total: 100, type: ProgressType.Linear
-        }).width('100%').opacity(0).color('#64BB5C')
+        }).width('100%').opacity(0).color('#64BB5C').animation({ duration: 2000 })
       }
     }
   }

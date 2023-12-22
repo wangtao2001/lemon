@@ -24,7 +24,7 @@ struct Settings {
   // 弹窗控制器
   homePageDialogController: CustomDialogController = new CustomDialogController({
     builder: InputDialog({
-      inputValue: this.defaultHomePage
+      inputValue: this.defaultHomePage, title: '更改主页'
     })
   })
   engineDialogController: CustomDialogController = new CustomDialogController({

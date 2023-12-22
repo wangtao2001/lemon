@@ -1,11 +1,12 @@
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import UIAbility from '@ohos.app.ability.UIAbility'
+import Want from '@ohos.app.ability.Want'
+import window from '@ohos.window'
+import web_webview from '@ohos.web.webview'
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    web_webview.WebviewController.initializeWebEngine()
   }
 
   onDestroy() {

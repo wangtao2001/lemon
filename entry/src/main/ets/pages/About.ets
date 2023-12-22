@@ -27,7 +27,7 @@ struct About {
         .justifyContent(FlexAlign.SpaceBetween)
       }
       Row() {
-        Text('Power by ').fontSize(14).fontColor('#66000000')
+        Text('Powered by ').fontSize(14).fontColor('#66000000')
         Image($r('app.media.HarmonyOS_logo')).height(18).objectFit(ImageFit.Contain)
       }.margin(20)
     }.justifyContent(FlexAlign.SpaceBetween).height('100%').backgroundColor(Color.White)
